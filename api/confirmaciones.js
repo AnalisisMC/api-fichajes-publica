@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
-    // 🔸 CORS - Solo permite peticiones desde tu dominio
-    res.setHeader('Access-Control-Allow-Origin', 'https://fichajekotrik.web.app');
+    // 🔸 CORS - Permite peticiones de cualquier origen (modo público)
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key');
 
