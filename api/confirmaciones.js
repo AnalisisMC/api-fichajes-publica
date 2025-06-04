@@ -35,7 +35,7 @@ async function handler(req, res) {
     const clientId = process.env.CLIENT_ID;
     const clientSecret = process.env.CLIENT_SECRET;
     const siteUrl = process.env.SITE_URL;
-    const listName = 'ConfirmacionesHorarios';
+    const listName = process.env.LIST_NAME_CONFIRMACIONES;
 
     try {
         const tokenResponse = await fetch(`https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`, {
