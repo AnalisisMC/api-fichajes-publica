@@ -1,11 +1,13 @@
 import fetch from 'node-fetch';
+import Cors from 'micro-cors';
 
-export default async function handler(req, res) {
-    // 🔸 CORS - Permite peticiones de cualquier origen (modo público)
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key');
+const cors = Cors({
+    allowMethods: ['POST', 'OPTIONS'],
+    allowHeaders: ['Content-Type', 'x-api-key'],
+    origin: '*'
+});
 
+async function handler(req, res) {
     // 🔸 Si es preflight OPTIONS, respondemos OK
     if (req.method === 'OPTIONS') {
         res.status(200).end();
@@ -90,3 +92,6 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+// 🔸 Exportamos la función con micro-cors aplicado
+export default cors(handler);
