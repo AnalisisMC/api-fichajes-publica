@@ -4,7 +4,7 @@ import Cors from 'micro-cors';
 const cors = Cors({
     allowMethods: ['POST', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'x-api-key'],
-    origin: '*'
+    origin: 'https://fichajekotrik.web.app'
 });
 
 async function handler(req, res) {
