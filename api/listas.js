@@ -28,7 +28,7 @@ async function handler(req, res) {
     const tenantId = process.env.TENANT_ID;
     const clientId = process.env.CLIENT_ID;
     const clientSecret = process.env.CLIENT_SECRET;
-    const siteUrl = process.env.SITE_URL;
+    const siteId = process.env.SITE_ID;
 
     try {
         // 🔸 Obtener token
@@ -47,7 +47,7 @@ async function handler(req, res) {
         const accessToken = tokenData.access_token;
 
         // 🔸 Llamada para obtener listas
-        const listsResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteUrl}/lists`, {
+        const listsResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/lists`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
