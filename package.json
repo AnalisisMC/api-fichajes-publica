@@ -1,0 +1,9 @@
+{
+  "name": "api-fichajes-publica",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "micro-cors": "^0.1.1",
+    "node-fetch": "^2.6.1"
+  }
+}
