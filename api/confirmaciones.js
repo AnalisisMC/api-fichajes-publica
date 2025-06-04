@@ -34,7 +34,7 @@ async function handler(req, res) {
     const tenantId = process.env.TENANT_ID;
     const clientId = process.env.CLIENT_ID;
     const clientSecret = process.env.CLIENT_SECRET;
-    const siteUrl = process.env.SITE_URL;
+    const siteId = process.env.SITE_ID;
     const listName = process.env.LIST_NAME_CONFIRMACIONES;
 
     try {
@@ -52,7 +52,7 @@ async function handler(req, res) {
         const tokenData = await tokenResponse.json();
         const accessToken = tokenData.access_token;
 
-        const listResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteUrl}/lists/${listName}`, {
+        const listResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/lists/${listName}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -62,7 +62,7 @@ async function handler(req, res) {
         const listData = await listResponse.json();
         const listId = listData.id;
 
-        const createResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteUrl}/lists/${listId}/items`, {
+        const createResponse = await fetch(`https://graph.microsoft.com/v1.0/sites/${siteId}/lists/${listId}/items`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
