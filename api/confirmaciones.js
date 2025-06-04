@@ -6,6 +6,12 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key');
 
+    // 🔸 Si es preflight OPTIONS, respondemos OK
+    if (req.method === 'OPTIONS') {
+        res.status(200).end();
+        return;
+    }
+
     // 🔸 Comprobamos la clave secreta
     const apiKey = req.headers['x-api-key'];
     if (apiKey !== process.env.API_KEY) {
