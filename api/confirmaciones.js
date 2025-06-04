@@ -1,6 +1,18 @@
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
+    // 🔸 CORS - Solo permite peticiones desde tu dominio
+    res.setHeader('Access-Control-Allow-Origin', 'https://fichajekotrik.web.app');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-api-key');
+
+    // 🔸 Comprobamos la clave secreta
+    const apiKey = req.headers['x-api-key'];
+    if (apiKey !== process.env.API_KEY) {
+        return res.status(403).json({ error: 'Forbidden' });
+    }
+
+    // 🔸 Solo aceptamos POST
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Only POST allowed' });
     }
